@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage{setspace}
+
+\title{Computational model of lambda calculus}
+\date{2018-9-28}
+\author{Martin Stoev, Anton Dudov}
+\setcounter{tocdepth}{1}
+
+\begin{filecontents}{references.bib}
+@BOOK{
+	DUMMY,
+	AUTHOR="John Doe",
+	TITLE="The Book without Title",
+	PUBLISHER="Dummy Publisher",
+	YEAR="2100",
+}
+\end{filecontents}
+
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+
+	\newpage
+	\doublespacing
+	\tableofcontents
+	\singlespacing
+
+	\newpage
+	\pagenumbering{arabic}
+
+	\section{Section}
+		Hello World!111
+	\subsection{Subsectioon}
+		easy peasy
+
+	\begin{equation}
+		f(x) = x^2
+	\end{equation}
+
+	\begin{equation}
+		f(x) = x^2+1
+	\end{equation}
+
+
+	\section{Second}
+		Hello World!111
+
+	Random citation \cite{DUMMY} embeddeed in text.
+
+	This formula $f(x) = x^2$ is an example.
+	\newpage
+
+	\bibliography{references}
+	\bibliographystyle{ieeetr}
+
+\end{document}
