@@ -9,11 +9,16 @@
 
 \begin{filecontents}{references.bib}
 @BOOK{
-	DUMMY,
-	AUTHOR="John Doe",
-	TITLE="The Book without Title",
-	PUBLISHER="Dummy Publisher",
-	YEAR="2100",
+	COM_COOPER,
+	AUTHOR="S. Barry Cooper",
+	TITLE="Computability Theory",
+	YEAR="2003",
+}
+@BOOK{
+	COM_ODIFREDDI,
+	AUTHOR="Piergiorgio Odifreddi",
+	TITLE="Classical recursion theory",
+	YEAR="1989",
 }
 \end{filecontents}
 
@@ -29,29 +34,27 @@
 	\newpage
 	\pagenumbering{arabic}
 
-	\section{Section}
-		Hello World!111
+	\section{Definitions}
+		%\subsection{DEFINITION 1.0.0}
+		\quad 
+		(1) If A is a r.e. set then $\psi_A$ is the enumeration operator defined by it, namely
+		\begin{equation}
+			x \in \psi^B_A \iff (\exists u \: finite) ((x, u) \in A \land D_u \subseteq B)
+		\end{equation}
+		\quad
+		(2) If $\theta$ is an enumeration operator then $G_\theta$ is a well-defined r.e. set defining it, namely
+		\begin{equation}
+			(x, u) \in G_\theta \iff x \in \theta^{D_u}
+		\end{equation}
+
 	\subsection{Subsectioon}
 		easy peasy
 
-	\begin{equation}
-		f(x) = x^2
-	\end{equation}
 
-	\begin{equation}
-		f(x) = x^2+1
-	\end{equation}
+	Random citation \cite{COM_COOPER} embeddeed in text.
+	Random citation \cite{COM_ODIFREDDI} embeddeed in text.
 
-
-	\section{Second}
-		Hello World!111
-
-	Random citation \cite{DUMMY} embeddeed in text.
-
-	This formula $f(x) = x^2$ is an example.
 	\newpage
-
 	\bibliography{references}
 	\bibliographystyle{ieeetr}
-
 \end{document}
