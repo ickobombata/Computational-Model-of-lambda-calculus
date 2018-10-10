@@ -1,11 +1,23 @@
 \documentclass{article}
 
 \usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{stmaryrd} % for the square double brackets
+\usepackage[utf8]{inputenc} % added with the Theorems and lemmas
+\usepackage[english]{babel} % added with the Theorems and lemmas
+\usepackage{amsthm} % proofs 
+
+\newtheorem{theorem}{Theorem}[section] % theorems
+\newtheorem{lemma}[theorem]{Lemma} % lemmas 
+\newtheorem{definition}{Definition}[section] % definitions
+
 
 \title{Computational model of lambda calculus}
 \date{2018-9-28}
 \author{Martin Stoev, Anton Dudov}
+
 \setcounter{tocdepth}{1}
+
 
 \begin{filecontents}{references.bib}
 @BOOK{
@@ -34,22 +46,54 @@
 	\newpage
 	\pagenumbering{arabic}
 
-	\section{Definitions}
-		%\subsection{DEFINITION 1.0.0}
-		\quad 
-		(1) If A is a r.e. set then $\psi_A$ is the enumeration operator defined by it, namely
-		\begin{equation}
-			x \in \psi^B_A \iff (\exists u \: finite) ((x, u) \in A \land D_u \subseteq B)
-		\end{equation}
-		\quad
-		(2) If $\theta$ is an enumeration operator then $G_\theta$ is a well-defined r.e. set defining it, namely
-		\begin{equation}
-			(x, u) \in G_\theta \iff x \in \theta^{D_u}
-		\end{equation}
+	\section{General Definitions}
+		\begin{definition}
+			An enumeration operator (or e-operator) $\psi^A$ is a r.e. set. For any A $\subseteq$ $\mathbb{N}$
+			\begin{equation}
+				x \in \psi^A \iff \exists u \:(finite \: D_u \subseteq A) \and ((x, u) \in \psi)
+			\end{equation}
+		\end{definition}
+			
+		\begin{definition}
+			If A is a r.e. set then $\psi_A$ is the enumeration operator defined by it, namely
+			\begin{equation}
+				x \in \psi^B_A \iff \exists u \: (D_u is finite) \and ((x, u) \in A \land D_u \subseteq B)
+			\end{equation}
+		\end{definition}
+		
+		\begin{definition}
+			If $\theta$ is an enumeration operator then $G_\theta$ is a well-defined r.e. set defining it, namely
+			\begin{equation}
+				(x, u) \in G_\theta \iff x \in \theta^{D_u}
+			\end{equation}
+		\end{definition}
 
-	\subsection{Subsectioon}
-		easy peasy
+	\begin{lemma}
+		If $\psi$ is an enumeration operator, then $\psi_{G_{\psi}} = \psi$
+	\end{lemma}	
+	\begin{proof}
+		TO BE DONE @anton
+	\end{proof}
 
+
+	\begin{definition}
+		Let $\eta$ be an assigment of r.e. sets to the variables of 
+		lambda calculus. With every $\lambda$-term E we inductively 
+		associate a r.e. set $\llbracket E \rrbracket_{\eta}$:
+			\begin{enumerate}
+				\item $\llbracket x \rrbracket_{\eta} = \eta (x)$
+				\item $\llbracket E_1 E_2 \rrbracket_{\eta} = 
+					\psi_{\llbracket E_1 \rrbracket_\eta} 
+					(\llbracket E_2 \rrbracket_\eta)$
+				\item $\llbracket \lambda x.E \rrbracket_{\eta} = 
+					G_{\lambda X. \llbracket E \rrbracket_{\eta [x := X]}}$
+			\end{enumerate}
+			Where $\lambda X. \llbracket E \rrbracket_{\eta [x := X]}$ is a function
+
+		\begin{equation}
+			A \in W \mapsto \llbracket E \rrbracket_{\eta [x := A]}
+		\end{equation}
+	\end{definition}
 
 	Random citation \cite{COM_COOPER} embeddeed in text.
 	Random citation \cite{COM_ODIFREDDI} embeddeed in text.
