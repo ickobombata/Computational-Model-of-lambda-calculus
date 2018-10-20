@@ -6,6 +6,8 @@
 \usepackage[utf8]{inputenc} % added with the Theorems and lemmas
 \usepackage[english]{babel} % added with the Theorems and lemmas
 \usepackage{amsthm} % proofs 
+\usepackage{amssymb} % two head arrow
+\usepackage{mathtools, amsmath} % multiline
 
 \newtheorem{theorem}{Theorem}[section] % theorems
 \newtheorem{lemma}[theorem]{Lemma} % lemmas 
@@ -48,16 +50,16 @@
 
 	\section{General Definitions}
 		\begin{definition}
-			An enumeration operator (or e-operator) $\psi^A$ is a r.e. set. For any A $\subseteq$ $\mathbb{N}$
+			An enumeration operator (or e-operator) $\Psi^A$ is a r.e. set. For any A $\subseteq$ $\mathbb{N}$
 			\begin{equation}
-				x \in \psi^A \iff \exists u \:(finite \: D_u \subseteq A) \and ((x, u) \in \psi)
+				x \in \Psi^A \iff \exists u \:(finite \: D_u \subseteq A) \and ((x, u) \in \Psi)
 			\end{equation}
 		\end{definition}
 			
 		\begin{definition}
-			If A is a r.e. set then $\psi_A$ is the enumeration operator defined by it, namely
+			If A is a r.e. set then $\Psi_A$ is the enumeration operator defined by it, namely
 			\begin{equation}
-				x \in \psi^B_A \iff \exists u \: (D_u is finite) \and ((x, u) \in A \land D_u \subseteq B)
+				x \in \Psi^B_A \iff \exists u \: (D_u is finite) \and ((x, u) \in A \land D_u \subseteq B)
 			\end{equation}
 		\end{definition}
 		
@@ -69,7 +71,7 @@
 		\end{definition}
 
 	\begin{lemma}
-		If $\psi$ is an enumeration operator, then $\psi_{G_{\psi}} = \psi$
+		If $\Psi$ is an enumeration operator, then $\Psi_{G_{\Psi}} = \Psi$
 	\end{lemma}	
 	\begin{proof}
 		TO BE DONE @anton
@@ -77,13 +79,13 @@
 
 
 	\begin{definition}
-		Let $\eta$ be an assigment of r.e. sets to the variables of 
+		Let $\eta$ be an assignment of r.e. sets to the variables of 
 		lambda calculus. With every $\lambda$-term E we inductively 
 		associate a r.e. set $\llbracket E \rrbracket_{\eta}$:
 			\begin{enumerate}
 				\item $\llbracket x \rrbracket_{\eta} = \eta (x)$
 				\item $\llbracket E_1 E_2 \rrbracket_{\eta} = 
-					\psi_{\llbracket E_1 \rrbracket_\eta} 
+					\Psi_{\llbracket E_1 \rrbracket_\eta} 
 					(\llbracket E_2 \rrbracket_\eta)$
 				\item $\llbracket \lambda x.E \rrbracket_{\eta} = 
 					G_{\lambda X. \llbracket E \rrbracket_{\eta [x := X]}}$
@@ -95,6 +97,73 @@
 		\end{equation}
 	\end{definition}
 
+	\begin{lemma}
+		For any environment $\eta$ and term t, $\llbracket$t$\rrbracket_\eta$ is an c.e. set.
+	\end{lemma}
+	\begin{proof}
+		By structural induction on the definition of $\llbracket$t$\rrbracket_\eta$.
+		\begin{enumerate}
+			\item 
+				$\llbracket x \rrbracket_\eta = \eta (x)$ by definition
+			\item
+				To show that $\Psi_{\llbracket E_1 \rrbracket_\eta} 
+				(\llbracket E_2 \rrbracket_\eta)$ is a c.e. set we
+				prove that $\Psi^B_A$ is an enumeration operator which 
+				follows from 
+				\begin{equation} 
+					n \in \Psi^B_A \iff \exists u (D_u \subseteq B 
+					\and <n, u> \in A)
+				\end{equation}
+			\item
+				To be done.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{lemma}
+		For the following theorem we will need one lemma
+		ahead for better readability
+	\end{lemma}
+	\begin{proof}
+		TO BE DONE @anton
+	\end{proof}
+
+	\begin{theorem}
+		If $E_1 \stackrel{\beta}{\twoheadrightarrow}  E_2$ then $\llbracket E_1
+		\rrbracket_{\eta} = \llbracket E_2 \rrbracket_{\eta}$
+		for any $\eta$.
+	\end{theorem}
+	\begin{proof}
+		We will prove one step of the $\beta$ reduction and then
+		by induction the rest will follow
+
+		We have that $(\lambda x E_1) E_2 = E_1 [x \mapsto E_2]$
+		and we will prove that 
+
+		$\llbracket (\lambda x E_1) E_2
+		\rrbracket_{\eta} = \llbracket E_1 [x \mapsto E_2] 
+		\rrbracket_{\eta}$
+		\begin{equation*}
+     \begin{split}
+			\llbracket (\lambda x E_1) E_2 \rrbracket_{\eta}
+			&\:\,\stackrel{def. 1.4.2}{=} \:
+			\Psi_{\llbracket \lambda x E_1 \rrbracket_{\eta}}
+				(\llbracket E_2 \rrbracket_{\eta}) \\
+			&\:\,\stackrel{def. 1.4.3}{=} \:
+			\Psi_{G_{\Lambda X \llbracket E_1 \rrbracket_{
+				\eta [x := X]}}}
+				(\llbracket E_2 \rrbracket_{\eta}) \\
+			&\stackrel{Lemma 1.1}{=}
+				\Lambda X \llbracket E_1 \rrbracket_{\eta [x := X]}
+				(\llbracket E_2 \rrbracket_{\eta}) \\
+			&\;\;\:\:\stackrel{def \Lambda}{=}\:\:\:\:\:
+				\llbracket E_1 \rrbracket_
+					{\eta [x := \llbracket E_2 \rrbracket_{\eta}]} \\
+			&\stackrel{Lemma 1.3}{=}\:
+				\llbracket E_1 [ x \mapsto E_2 ] \rrbracket_{\eta}
+     \end{split}
+		\end{equation*}
+	\end{proof}
+
 	Random citation \cite{COM_COOPER} embeddeed in text.
 	Random citation \cite{COM_ODIFREDDI} embeddeed in text.
 
@@ -102,3 +171,20 @@
 	\bibliography{references}
 	\bibliographystyle{ieeetr}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
