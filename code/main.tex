@@ -98,10 +98,12 @@
 	\end{definition}
 
 	\begin{lemma}
-		For any environment $\eta$ and term t, $\llbracket$t$\rrbracket_\eta$ is an c.e. set.
+		For any environment $\eta$ and term t, 
+			$\llbracket$t$\rrbracket_\eta$ is an c.e. set.
 	\end{lemma}
 	\begin{proof}
-		By structural induction on the definition of $\llbracket$t$\rrbracket_\eta$.
+		By structural induction on the definition of 
+			$\llbracket$t$\rrbracket_\eta$.
 		\begin{enumerate}
 			\item 
 				$\llbracket x \rrbracket_\eta = \eta (x)$ by definition
@@ -121,14 +123,77 @@
 	
 	\begin{lemma}
 		For the following theorem we will need one lemma
-		ahead for better readability
+		beforehand for better readability, namely
+		\begin{equation}
+			\llbracket u \rrbracket_{\eta [x := 
+				\llbracket v \rrbracket_{\eta}]} = 
+				\llbracket u [x \mapsto v] \rrbracket_{\eta}
+		\end{equation}
 	\end{lemma}
 	\begin{proof}
-		TO BE DONE @anton
+		Structural induction on u.
+		\begin{enumerate}
+			\item u = x, then:
+			\begin{equation}
+				\llbracket x \rrbracket_{\eta [x := 
+				\llbracket v \rrbracket_{\eta}]} = 
+				\eta (x) =
+				\llbracket v \rrbracket_{\eta} =
+				\llbracket x [x \mapsto v] \rrbracket_{\eta}
+			\end{equation}
+			
+			\item u = y $\neq$ x, then:
+			\begin{equation}
+				\llbracket y \rrbracket_{\eta [x := 
+				\llbracket v \rrbracket_{\eta}]} = 
+				\eta (y) =
+				\llbracket y \rrbracket_{\eta} =
+				\llbracket y [x \mapsto v] \rrbracket_{\eta}
+			\end{equation}
+
+			\item u = pq, then:
+			\begin{equation*}
+			\begin{split}
+				\llbracket pq \rrbracket_{\eta [x := 
+				\llbracket v \rrbracket_{\eta}]}
+ 				&\stackrel{def 1.4.2}{=}
+				\Psi_{\llbracket p \rrbracket_{
+					\eta [x := \llbracket v \rrbracket_{\eta}}]}
+					(\llbracket q \rrbracket_{
+					\eta [x:= \llbracket v \rrbracket_{\eta}]}) \\
+ 				&\stackrel{ind.hyp.}{=}
+				\Psi_{\llbracket p[x \mapsto v] \rrbracket_{\eta}
+					(\llbracket q[x \mapsto v] \rrbracket_{\eta}]}) \\
+ 				&\stackrel{def 1.4.2}{=}
+				\llbracket p[x \mapsto v]q[x \mapsto v] 
+					\rrbracket_{\eta}\\
+ 				&\stackrel{def App}{=}
+				\llbracket pq [x \mapsto v] \rrbracket_{\eta}
+			\end{split}
+			\end{equation*}
+
+			\item u = $\lambda_y$ p, then:
+			\begin{equation*}
+			\begin{split}
+				\llbracket \lambda_y p \rrbracket_{\eta [x := 
+				\llbracket v \rrbracket_{\eta}]}
+ 				&\stackrel{def 1.4.3}{=}
+				G_{\Lambda Y. \llbracket p \rrbracket_{
+					\eta [x :] \llbracket v \rrbracket_{\eta} ; 
+						y := Y]}} \\
+ 				&\stackrel{ind.hyp}{=}
+				G_{\Lambda Y. \llbracket p[x \mapsto v] \rrbracket_{
+					\eta[ y:=Y]} } \\
+ 				&\stackrel{def 1.4.3}{=}
+				\llbracket \lambda_y p[x \mapsto v]\rrbracket_{\eta}
+			\end{split}
+			\end{equation*}
+		\end{enumerate}
 	\end{proof}
 
 	\begin{theorem}
-		If $E_1 \stackrel{\beta}{\twoheadrightarrow}  E_2$ then $\llbracket E_1
+		If $E_1 \stackrel{\beta}{\twoheadrightarrow}  E_2$ then 
+			$\llbracket E_1
 		\rrbracket_{\eta} = \llbracket E_2 \rrbracket_{\eta}$
 		for any $\eta$.
 	\end{theorem}
