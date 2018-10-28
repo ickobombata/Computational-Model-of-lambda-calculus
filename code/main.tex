@@ -12,7 +12,7 @@
 \newtheorem{theorem}{Theorem}[section] % theorems
 \newtheorem{lemma}[theorem]{Lemma} % lemmas 
 \newtheorem{definition}{Definition}[section] % definitions
-
+\newtheorem{exercise}{Exercise}[section]
 
 \title{Computational model of lambda calculus}
 \date{2018-9-28}
@@ -52,14 +52,14 @@
 		\begin{definition}
 			An enumeration operator (or e-operator) $\Psi^A$ is a r.e. set. For any A $\subseteq$ $\mathbb{N}$
 			\begin{equation}
-				x \in \Psi^A \iff \exists u \:(finite \: D_u \subseteq A) \and ((x, u) \in \Psi)
+				x \in \Psi^A \iff \exists u \:(finite \: D_u \subseteq A) \:\&\: ((x, u) \in \Psi)
 			\end{equation}
 		\end{definition}
 			
 		\begin{definition}
 			If A is a r.e. set then $\Psi_A$ is the enumeration operator defined by it, namely
 			\begin{equation}
-				x \in \Psi^B_A \iff \exists u \: (D_u is finite) \and ((x, u) \in A \land D_u \subseteq B)
+				x \in \Psi^B_A \iff \exists u \: (D_u is finite) \:\&\: ((x, u) \in A \land D_u \subseteq B)
 			\end{equation}
 		\end{definition}
 		
@@ -114,7 +114,7 @@
 				follows from 
 				\begin{equation} 
 					n \in \Psi^B_A \iff \exists u (D_u \subseteq B 
-					\and <n, u> \in A)
+					\:\&\: <n, u> \in A)
 				\end{equation}
 			\item
 				To be done.
@@ -229,6 +229,123 @@
 		\end{equation*}
 	\end{proof}
 
+	\begin{definition}
+		We define the fixed point combinator Y to be:
+		\begin{equation}
+			Y \stackrel{def}{=} \lambda f.
+				((\lambda x. f(x\:x))\:
+				((\lambda x. f(x\:x))
+		\end{equation}
+	\end{definition}
+	\begin{exercise}
+		Show that any $\lambda$-term F has fixed point YF, such that
+			\begin{equation}
+				YF\:=\:F(YF).
+			\end{equation}
+	\end{exercise}
+	\begin{proof}
+		\begin{equation*}
+     \begin{split}
+			YF &= ((\lambda x. F(x\:x))\:((\lambda x. F(x\:x))\\
+				&= F((\lambda x. F(x\:x))\:((\lambda x. F(x\:x))\\
+				&= F(\lambda f. 
+						((\lambda x. f(x\:x))\:
+						((\lambda x. f(x\:x)) F)\\
+				&= F(YF)
+     \end{split}
+		\end{equation*}
+	\end{proof}
+
+	\begin{exercise}
+		Let $\Psi$ be any e-operator. Show that $\Psi$ can be
+		expressed as:
+			\begin{equation}
+				\Psi\:=\:\Psi_{\llbracket x \rrbracket_{\eta}}
+			\end{equation}
+		for suitable choise of assigment $\eta$.
+	\end{exercise}
+	\begin{proof}
+		Since $\Psi$ is an e-operator, then 
+		$\forall B \: \exists e:\: \Psi = \Phi_e$, therefore:
+		\begin{equation*}
+		\begin{split}
+			n \in \Psi^B &\iff \exists u \: 
+				<n, u> \in W_e \:\&\: D_u \subseteq B\\
+			&\iff \exists u \: <n, u> \in 
+				\llbracket x \rrbracket_{\eta} \:\&\: D_u \subseteq B
+				,\:\: where \:\:\eta(x) = W_e\\
+			&\iff n \in \Psi_{\llbracket x \rrbracket_{\eta}}^B
+		\end{split}
+		\end{equation*}
+	\end{proof}
+
+	\begin{exercise}
+		Let $\Psi$ be any e-operator. Show that $\Psi$ has a 
+		r.e. fixed point W, such that:
+			\begin{equation}
+				\Psi^W\:=\:W
+			\end{equation}
+	\end{exercise}
+	\begin{proof}
+		Let $W=\llbracket Yx \rrbracket_{\eta}$, then:
+		\begin{equation}
+			\llbracket Yx \rrbracket_{\eta} =
+				\llbracket x(Yx) \rrbracket_{\eta} =
+				\Phi_
+					{\llbracket x \rrbracket_{\eta}} 
+					(\llbracket Yx \rrbracket_{\eta})
+		\end{equation}
+		\begin{equation*}
+		\begin{split}
+			n \in \Phi_
+					{\llbracket x \rrbracket_{\eta}} 
+					(\llbracket Yx \rrbracket_{\eta})
+				&\iff \exists u \: <n, u> \in 
+				\llbracket x \rrbracket_{\eta} 
+					\:\&\: D_u \subseteq \llbracket Yx \rrbracket_{\eta}
+					,\:let\:\eta(x) = W_e\\
+				&\iff \exists u \: <n, u> \in W_e
+					\:\&\: D_u \subseteq \llbracket Yx \rrbracket_{\eta}\\
+				&\iff \eta \in \Psi^{\llbracket Yx \rrbracket_{\eta}}
+		\end{split}
+		\end{equation*}
+	\end{proof}
+
+	\begin{exercise}
+		Show that for any assigment $\eta$:
+			\begin{equation}
+				\llbracket Yx \rrbracket_{\eta[x := \emptyset]} 
+					= \emptyset
+			\end{equation}
+	\end{exercise}
+	\begin{proof}
+		We know that: 
+		\begin{equation}
+			\llbracket Yx \rrbracket_{\eta [x := \emptyset]} =
+				\llbracket x(Yx) \rrbracket_{\eta [x := \emptyset]}\\
+			= \Phi_
+					{\llbracket x \rrbracket_{\eta[x := \emptyset]}} 
+					(\llbracket Yx \rrbracket_{\eta[x := \emptyset]})
+		\end{equation}
+
+		\begin{equation*}
+		\begin{split}
+			n \in \Phi_
+					{\llbracket x \rrbracket_{\eta[x := \emptyset]}} 
+					(\llbracket Yx \rrbracket_{\eta[x := \emptyset]})
+				&\iff \exists u \: <n, u> \in 
+				\llbracket x \rrbracket_{\eta[x := \emptyset]} 
+					\:\&\: D_u \subseteq 
+						\llbracket Yx \rrbracket_{\eta[x := \emptyset]}\\
+				&\iff \exists u \: <n, u> \in \emptyset 
+					\:\&\: D_u \subseteq 
+						\llbracket Yx \rrbracket_{\eta[x := \emptyset]}\\
+				&\quad\Rightarrow \neg \exists n\: :\: 
+					n \in \Phi_{\llbracket x \rrbracket_{
+						\eta[x := \emptyset]}}
+		\end{split}
+		\end{equation*}
+	\end{proof}
 	Random citation \cite{COM_COOPER} embeddeed in text.
 	Random citation \cite{COM_ODIFREDDI} embeddeed in text.
 
