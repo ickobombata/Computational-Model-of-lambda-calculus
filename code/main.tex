@@ -71,10 +71,38 @@
 		\end{definition}
 
 	\begin{lemma}
-		If $\Psi$ is an enumeration operator, then $\Psi_{G_{\Psi}} = \Psi$
+		If $\Phi$ is an enumeration operator, then $\Phi_{G_{\Psi}} = \Psi$
 	\end{lemma}	
 	\begin{proof}
-		TO BE DONE @anton
+		($\subseteq$)
+		\begin{equation*}
+		\begin{split}
+			x \in \Phi_{G_\Psi}^B &\Rightarrow \exists u \: 
+				<x, u> \in G_\Psi \:\&\: D_u \subseteq B\\
+			&\Rightarrow \exists u \: 
+				<x, u> \in \Psi^{D_u} \:\&\: D_u \subseteq B 
+		\end{split}
+		\end{equation*}
+		\qquad since Du $\subseteq$ B \& e-operator is monotone 
+		it follows that: $x \in \Psi^B$
+		\newline
+		($\supseteq$)
+		\newline
+		Since $\Psi$ is an e-operator, then 
+		$\forall B \: \exists e:\: \Psi = \Phi_e$, therefore:
+		\begin{equation*}
+		\begin{split}
+			x \in \Phi_e^B &\Rightarrow \exists u \: 
+				<x, u> \in W_e \:\&\: D_u \subseteq B\\
+			&\Rightarrow \exists u \: 
+				<x, u> \in W_e \:\&\: D_u \subseteq D_u,\:therefore\\
+			&x \in \Psi^{D_u} \:\Rightarrow\: <x, u> \in G_\Psi\\
+			&\Rightarrow \exists u \: 
+				<x, u> \in G_\Psi \:\&\: D_u \subseteq B\\
+			&\Rightarrow x \in \Phi_{G_\Psi}
+		\end{split}
+		\end{equation*}
+
 	\end{proof}
 
 
@@ -117,7 +145,67 @@
 					\:\&\: <n, u> \in A)
 				\end{equation}
 			\item
-				To be done.
+				Since the graph of an enumeration operator is an r.e.
+				set, to show that 
+				$\llbracket \lambda_x u \rrbracket_\eta$ 
+				$\stackrel{def 1.4.3}{=}$ 
+				$G_{\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}}$
+				is an r.e. set we prove that
+				$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+				is an e-operator. This can be done inductively on u:
+				\begin{itemize}
+  				\item If u = x, then 
+					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+					is the identity function $\Lambda X. X$, which is 
+					an enumeration operator.
+  				\item If u = y $\neq$ x, then 
+					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+					is the constant function $\Lambda X. \eta(y)$, which
+					is an enumeration operator.
+  				\item third
+  				\item Let 
+				\begin{equation*}
+				\begin{split}
+					\llbracket E \rrbracket_\eta[x := W_1\; y := W_2]
+					= \prescript{E}{}{\Psi}{}{}^W_1 \oplus W_2, where\\
+					\prescript{E}{}{\Psi}{}{} = \{<x, v> |\:x \in 
+					\llbracket E \rrbracket_{\eta_{
+					[x := L(D_v)\; y := R(D_v)]}}\}\\
+					x \in \prescript{E}{}{\Psi}{}{}^W \iff \exists u \: 
+					<x, u>\:\in\:\prescript{E}{}{\Psi}{}{}\:\&\: 
+					D_u \subseteq W
+				\end{split}
+				\end{equation*}
+				Then
+				\begin{equation*}
+				\begin{split}
+					\llbracket \lambda_y E \rrbracket_\eta{ [x := W_i]}
+					\stackrel{def 1.4.3}{=}
+					G_{\Lambda Y. \llbracket E \rrbracket_\eta
+					{[x := W_i, y:= Y]}}
+					\\{=}
+					\{<x, v> | x \in 
+					\llbracket E \rrbracket_\eta {[x := W_i, y:= D_v]}\}
+					\\\stackrel{i.h.}{=}
+					\{<x, v> | x \in 
+					\prescript{E}{}{\Psi}{}{} \: W \oplus\ D_v\}
+					\\{=}
+					\{<x, v> | \exists u \:	<x,\:u>\:\in\:
+					\prescript{E}{}{\Psi}{}{}\:\&\: 
+					D_u \subseteq W \oplus D_v\}
+					\\\stackrel{def \prescript{E}{}{\Psi}{}{}}{=}
+					\{<x, v> | \exists u \: 	x\:\in\:
+					\llbracket E \rrbracket_\eta
+					{[x := L(D_u), y:= R(D_u)]}
+					\:\&\: 	D_u \subseteq W \oplus D_v\}	
+					\\{=}
+					\{<<x,\:v>,\:u> | x \:\in\:
+					\llbracket E \rrbracket_\eta
+					{[x := L(D_u), y:= R(D_u)]}
+					\:\&\: 	D_u \subseteq W \oplus D_v\}
+				\end{split}
+				\end{equation*}
+				\end{itemize}
 		\end{enumerate}
 	\end{proof}
 	
