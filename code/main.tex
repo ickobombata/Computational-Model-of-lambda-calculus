@@ -153,17 +153,8 @@
 				is an r.e. set we prove that
 				$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
 				is an e-operator. This can be done inductively on u:
-				\begin{itemize}
-  				\item If u = x, then 
-					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
-					is the identity function $\Lambda X. X$, which is 
-					an enumeration operator.
-  				\item If u = y $\neq$ x, then 
-					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
-					is the constant function $\Lambda X. \eta(y)$, which
-					is an enumeration operator.
-  				\item third
-  				\item Let 
+
+ 				Let 
 				\begin{equation*}
 				\begin{split}
 					\llbracket E \rrbracket_\eta[x := W_1\; y := W_2]
@@ -176,6 +167,30 @@
 					D_u \subseteq W
 				\end{split}
 				\end{equation*}
+				\begin{itemize}
+  				\item If u = x, then 
+					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+					is the identity function $\Lambda X. X$, which is 
+					an enumeration operator.
+  				\item If u = y $\neq$ x, then 
+					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+					is the constant function $\Lambda X. \eta(y)$, which
+					is an enumeration operator.
+  				\item If u = $u_1 u_2$, then
+					$\Lambda X. \llbracket u \rrbracket_{\eta [x := X]}$
+					is $\Lambda X \Phi_{\llbracket u_1 \rrbracket_{\eta 
+					[x := X]}} (\llbracket u_2 \rrbracket_{\eta 
+					[x := X]})$. Where by the i.h. 
+					$\llbracket u_1 \rrbracket_{\eta [x := X]}$
+					is an e operator, namely
+					$\prescript{u_1}{}{\Psi}{}{}$
+					and 
+					$\llbracket u_2 \rrbracket_{\eta [x := X]}$
+					is an e operator, namely 
+					$\prescript{u_2}{}{\Psi}{}{}$
+					Therefore $\Phi_{\prescript{u_1}{}{\Psi}{}{}} 										(\prescript{u_2}{}{\Psi}{}{})$ is an e operator
+					(by the proof from 1.2.2).
+  				\item If u = $\lambda_y$ E.
 				Then
 				\begin{equation*}
 				\begin{split}
@@ -205,6 +220,11 @@
 					\:\&\: 	D_u \subseteq W \oplus D_v\}
 				\end{split}
 				\end{equation*}
+				Since $\llbracket E \rrbracket_\eta
+				{[x := L(D_u), y:= R(D_u)]}$ is an e operator(i.h)
+				(e operators are r.e. by definition) and
+				$D_u \subseteq W \oplus D_v$ is r.e. set
+				it follows that the above set is an e operator.
 				\end{itemize}
 		\end{enumerate}
 	\end{proof}
