@@ -193,25 +193,25 @@
 				\begin{equation*}
 				\begin{split}
 					\llbracket \lambda_y E \rrbracket_\eta{ [x := W_i]}
-					\stackrel{def 1.4.3}{=}
+					&\stackrel{def 1.4.3}{=}
 					G_{\Lambda Y. \llbracket E \rrbracket_\eta
-					{[x := W_i, y:= Y]}}
-					\\{=}
+					{[x := W_i, y:= Y]}} \\
+					&\quad\;{=}
 					\{<x, v> | x \in 
-					\llbracket E \rrbracket_\eta {[x := W_i, y:= D_v]}\}
-					\\\stackrel{i.h.}{=}
+					\llbracket E \rrbracket_\eta {[x := W_i, y:= D_v]}\}\\
+					&\:\,\;\stackrel{i.h.}{=}
 					\{<x, v> | x \in 
-					\prescript{E}{}{\Psi}{}{} \: W \oplus\ D_v\}
-					\\{=}
+					\prescript{E}{}{\Psi}{}{} \: W \oplus\ D_v\}\\
+					&\quad\,{=}
 					\{<x, v> | \exists u \:	<x,\:u>\:\in\:
 					\prescript{E}{}{\Psi}{}{}\:\&\: 
-					D_u \subseteq W \oplus D_v\}
-					\\\stackrel{def \prescript{E}{}{\Psi}{}{}}{=}
+					D_u \subseteq W \oplus D_v\} \\
+					&\stackrel{def \prescript{E}{}{\Psi}{}{}}{=}
 					\{<x, v> | \exists u \: 	x\:\in\:
 					\llbracket E \rrbracket_\eta
 					{[x := L(D_u), y:= R(D_u)]}
-					\:\&\: 	D_u \subseteq W \oplus D_v\}	
-					\\{=}
+					\:\&\: 	D_u \subseteq W \oplus D_v\}	 \\
+					&\quad\:{=}
 					\{<<x,\:v>,\:u> | x \:\in\:
 					\llbracket E \rrbracket_\eta
 					{[x := L(D_u), y:= R(D_u)]}
@@ -345,6 +345,8 @@
 	\end{definition}
 
 	\section{Exercises}
+	Further details on this exercises can be found in 
+		\cite{COM_COOPER}, \cite{COM_ODIFREDDI}.
 	\begin{exercise}
 		Show that any $\lambda$-term F has fixed point YF, such that
 			\begin{equation}
@@ -454,15 +456,11 @@
 		\end{split}
 		\end{equation*}
 	\end{proof}
-	Random citation \cite{COM_COOPER} embeddeed in text.
-	Random citation \cite{COM_ODIFREDDI} embeddeed in text.
 
 	\newpage
 	\bibliography{references}
 	\bibliographystyle{ieeetr}
 \end{document}
-
-
 
 
 
